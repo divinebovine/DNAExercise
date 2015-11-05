@@ -1,0 +1,92 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    /*color: #232323;
+    background-color: #fff;*/
+    background-color: #BCCCE0;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+h2 {
+    margin-left: 5%;
+}
+
+#file-selection {
+    margin-left: 5%;
+}
+
+#options {
+    margin: 0.5em 5% 0.5em 5%;
+}
+
+#search-box {
+    float:left;
+    margin-right: 0.5em;
+}
+
+#dna {
+    font-family: 'Droid Sans Mono', Monaco, monospace;
+    font-size: larger;
+    border: 2px solid #312F2F;
+    margin: 0.5em 5% 0.5em 5%;
+    padding: 0.2em;
+    max-width: 90%;
+}
+
+.match {
+    color: red;
+    background-color: #f8f800;
+}
+
+#match-count {
+    margin-left: 5%;
+}

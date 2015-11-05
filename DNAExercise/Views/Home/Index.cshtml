@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "DNA Search and Repair";
+}
+
+<h2>DNA Search and Repair</h2>
+
+<form id="file-selection" method="post" enctype="multipart/form-data">
+    <label>
+        Filename:
+        <input id="filename" type="file" name="file" />
+    </label>
+    <input id="file-submit" type="submit" value="Submit" />
+</form>
+
+<div id="options">
+    <div id="search-box">
+        <label class="label">Search:</label>
+        <input id="search" type="text" />
+    </div>
+    <form>
+        <label class="label">
+            <input id="span-groups" type="checkbox" checked />
+            Span Groups
+        </label>
+    </form>
+</div>
+
+@if (Model != null && !String.IsNullOrWhiteSpace(Model.Data))
+{
+    <div id="dna" data-result="@Model.Data"></div>
+    <div id="match-count"></div>
+}
