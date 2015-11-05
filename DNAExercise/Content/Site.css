@@ -1,8 +1,7 @@
 ﻿body {
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    /*color: #232323;
-    background-color: #fff;*/
+    color: #232323;
     background-color: #BCCCE0;
 }
 
@@ -87,6 +86,11 @@ h2 {
     background-color: #f8f800;
 }
 
-#match-count {
+#feedback {
     margin-left: 5%;
+    color: #232323;
+}
+
+#feedback.error {
+    color: red;
 }

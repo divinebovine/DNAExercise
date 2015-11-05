@@ -10,21 +10,25 @@ $(function () {
     var dnaElement = document.getElementById('dna'),
         searchElement = document.getElementById('search'),
         spanGroupsElement = document.getElementById('span-groups'),
-        dnaData = dnaElement ? dnaElement.dataset.result : "",
-        spanGroups = spanGroupsElement.checked,
-        groupSize = 4,
-        findMatches = function () {
-            if (dnaElement && dnaData) {
-                var regex = new RegExp(searchElement.value.toUpperCase(), "g"),
-                    searchLength = searchElement.value.length,
-                    result,
-                    $baseMatch,
-                    matchList = [];
+        $feedback = $('#feedback');
+    dnaData = dnaElement ? dnaElement.dataset.result : "",
+    spanGroups = spanGroupsElement.checked,
+    groupSize = 4,
+    findMatches = function () {
+        if (dnaElement && dnaData) {
+            var regex = new RegExp(searchElement.value.toUpperCase(), "g"),
+                searchLength = searchElement.value.length,
+                result,
+                $baseMatch,
+                matchList = [];
 
-                // clear any previous matches and the match count
-                $('#dna').find('span').removeClass('match');
-                $('#match-count').text('');
+            // clear any previous matches and feedback
+            $('#dna').find('span').removeClass('match');
+            $feedback.text('');
+            $feedback.removeClass('error');
 
+            console.log(validSearch());
+            if (validSearch()) {
                 // on occasion, searches would die when the search length was only 1
                 // character. Only perform searches for more than one character as a work around.
                 if (searchLength > 1) {
@@ -49,13 +53,22 @@ $(function () {
                         }
                     });
 
-                    // update match count
-                    $('#match-count').text(matchList.length != 1
+                    // update feedback
+                    $feedback.text(matchList.length != 1
                         ? 'Found ' + matchList.length + ' matches!'
                         : 'Found 1 match!');
                 }
             }
-        };
+            else {
+                $feedback.text('Invalid search. Acceptable input is the letters A, C, G, and T.');
+                $feedback.addClass('error');
+            }
+        }
+    },
+    validSearch = function () {
+        var text = searchElement.value;
+        return text.search(new RegExp('^[ACGTacgt]+$')) != -1 || text.length == 0;
+    };
 
     // register a callback to handle search input
     searchElement.onkeyup = function () {
