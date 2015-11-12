@@ -25,8 +25,8 @@
     </form>
 </div>
 
-@if (Model != null && !String.IsNullOrWhiteSpace(Model.Data))
+@if (Model != null)
 {
     <div id="dna" data-result="@Model.Data"></div>
-    <div id="feedback"></div>
+    <div id="feedback">@Model.Feedback</div>
 }

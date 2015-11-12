@@ -81,6 +81,10 @@ h2 {
     max-width: 90%;
 }
 
+#dna:empty {
+    border:none;
+}
+
 .match {
     color: red;
     background-color: #f8f800;

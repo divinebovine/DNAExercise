@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,17 +12,26 @@ namespace DNAExercise.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly string uploadFolder = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+        private readonly string uploadFolder = 
+            Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(),
+                         ConfigurationManager.AppSettings["UploadFolder"]);
 
         [HttpGet]
         public ActionResult Index(string fileName)
         {
             DNA model = null;
-            if (!String.IsNullOrWhiteSpace(fileName))
+            try
             {
-                string file = Path.Combine(uploadFolder, fileName);
-                string text = System.IO.File.ReadAllText(file);
-                model = new DNA(text);
+                if (!String.IsNullOrWhiteSpace(fileName))
+                {
+                    string file = Path.Combine(uploadFolder, fileName);
+                    string text = System.IO.File.ReadAllText(file);
+                    model = new DNA(text);
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                model = new DNA(feedback:string.Format("Unable to find {0}.", fileName));
             }
             
             return View(model);
